@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@EnableTransactionManagement
+@EnableTransactionManagement(proxyTargetClass = true)
 @Configuration
-@MapperScan("com.tensquare.qa.mapper")
+@MapperScan("com.tensquare.article.mapper")
 public class MybatisPlusConfig {
 
     /**

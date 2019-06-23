@@ -87,7 +87,7 @@ public class ProblemController {
     }
 
     @PutMapping("/{id}")
-    public Result udpate(@PathVariable("id") String id, Problem problem) {
+    public Result udpate(@PathVariable("id") String id, @RequestBody Problem problem) {
         problem.setId(id);
         problem.setUpdatetime(new Date());
         problemService.udpate(problem);

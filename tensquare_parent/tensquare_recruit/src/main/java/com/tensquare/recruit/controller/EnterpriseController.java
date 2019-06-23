@@ -11,6 +11,7 @@ import entity.Result;
 import entity.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import util.IdWorker;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,8 +31,12 @@ public class EnterpriseController {
     @Autowired
     private EnterpriseServiceImpl enterpriseServiceImpl;
 
+    @Autowired
+    private IdWorker idWorker;
+
     @PostMapping
     public Result add(@RequestBody Enterprise enterprise) {
+        enterprise.setId(idWorker.nextId()+"");
         return new Result(true, StatusCode.OK, "添加成功", enterpriseServiceImpl.save(enterprise));
     }
 
@@ -46,7 +51,8 @@ public class EnterpriseController {
     }
 
     @PutMapping("/{id}")
-    public Result findById(@PathVariable("id") String id, Enterprise enterprise) {
+    public Result updateById(@PathVariable("id") String id, @RequestBody Enterprise enterprise) {
+        enterprise.setId(id);
         return new Result(true, StatusCode.OK, "更新成功", enterpriseServiceImpl.update(enterprise, null));
     }
 

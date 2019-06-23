@@ -13,6 +13,9 @@
         <module>tensquare_qa</module>
         <module>tensquare_recruit</module>
         <module>tensquare_article</module>
+        <module>tensquare_gathering</module>
+        <module>tensquare_spit</module>
+        <module>tensquare_search</module>
     </modules>
     <packaging>pom</packaging>
     
@@ -37,24 +40,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-
-        <!--druid-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.16</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>19.0</version>
         </dependency>
 
     </dependencies>

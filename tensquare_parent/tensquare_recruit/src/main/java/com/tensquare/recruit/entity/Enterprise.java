@@ -27,7 +27,6 @@ package com.tensquare.recruit.entity;
             /**
             * ID
             */
-    @TableId(type = IdType.ID_WORKER)
     private String id;
 
             /**

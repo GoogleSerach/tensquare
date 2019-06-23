@@ -1,5 +1,5 @@
 server:
-  port: 9003
+  port: 9004
 spring:
   application:
     name: tensquare-article
@@ -32,6 +32,14 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+  redis:
+    host: 139.180.199.112
+  data:
+    mongodb:
+      host: 139.180.199.112
+      database: recruitdb
+
 #mybatis-plus打印sql
 logging:
   level:

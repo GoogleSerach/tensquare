@@ -12,6 +12,7 @@ import entity.Result;
 import entity.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import util.IdWorker;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +31,9 @@ public class RecruitController {
 
     @Autowired
     private RecruitServiceImpl recruitServiceImpl;
+
+    @Autowired
+    private IdWorker idWorker;
 
     /**
      * 需求分析：查询状态不为0并以创建日期降序排序，查询前12条记录
@@ -87,12 +91,14 @@ public class RecruitController {
     }
 
     @PutMapping("/{id}")
-    public Result findById(@PathVariable("id") String id, Recruit recruit) {
+    public Result updateById(@PathVariable("id") String id, @RequestBody Recruit recruit) {
+        recruit.setId(id);
         return new Result(true, StatusCode.OK, "更新成功", recruitServiceImpl.update(recruit, null));
     }
 
     @PostMapping
     public Result add(@RequestBody Recruit recruit) {
+        recruit.setId(idWorker.nextId()+"");
         return new Result(true, StatusCode.OK, "添加成功", recruitServiceImpl.save(recruit));
     }
 

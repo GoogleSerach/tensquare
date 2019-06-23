@@ -52,7 +52,7 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://139.180.199.112:3306/tensquare_recruit?characterEncoding=utf-8");
+        dsc.setUrl("jdbc:mysql://139.180.199.112:3306/tensquare_gathering?characterEncoding=utf-8");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
