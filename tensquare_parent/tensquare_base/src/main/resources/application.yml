@@ -1,0 +1,52 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: tensquare-base
+  datasource:
+    username: root
+    password: aa22
+    url: jdbc:mysql://139.180.199.112:3306/tensquare_base?characterEncoding=utf-8
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialization-mode: always
+    schema:
+    #      - classpath*:sql/department.sql
+    #      - classpath*:sql/employee.sql
+
+    #数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+
+    #配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+mybatis:
+  mapper-locations: classpath*:mapper/*xml
+  configuration:
+    map-underscore-to-camel-case: true
+    default-statement-timeout: 600
+    default-executor-type: reuse
+    use-generated-keys: true
+  type-aliases-package: com.tensquare.base.pojo
+mapper:
+  mappers:
+    - com.tensquare.base.mapper.LabelMapper
+  not-empty: false
+  identity: MYSQL
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

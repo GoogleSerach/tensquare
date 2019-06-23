@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tensquare.base.mapper.LabelMapper">
+
+    <select id="findSearch" resultType="Label">
+        select id, labelname, state, count, fans, recommend from tb_label
+        <where>
+            <if test="id != null or id != ''">
+                id like CONCAT('%', #{id}, '%') or
+            </if>
+            <if test="labelname != null or labelname != ''">
+                labelname like CONCAT('%', #{labelname}, '%') or
+            </if>
+            <if test="state != null or state != ''">
+                state like CONCAT('%', #{state}, '%') or
+            </if>
+            <if test="count != null">
+                count = #{count} or
+            </if>
+            <if test="fans != null">
+                fans = #{fans} or
+            </if>
+            <if test="recommend != null or recommend != ''">
+                recommend like CONCAT('%', #{recommend}, '%')
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteById">
+        delete from tb_label where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="Label">
+        update tb_label
+            <set>
+                <if test="labelname!= null or labelname != ''">
+                    labelname = #{labelname},
+                </if>
+                <if test="state == 0 or state == 1">
+                    state = #{state},
+                </if>
+                <if test="count != null">
+                    count = #{count},
+                </if>
+                <if test="fans != null">
+                    fans = #{fans},
+                </if>
+                <if test="recommend != null or recommend != ''">
+                    recommend = #{recommend}
+                </if>
+            </set>
+        where id = #{id}
+    </update>
+
+    <select id="findByRecommend" resultType="Label">
+        select id, labelname, state, count, fans, recommend from tb_label where recommend = #{recommend}
+    </select>
+
+    <select id="findById" resultType="Label">
+        select id, labelname, state, count, fans, recommend from tb_label where id = #{id}
+    </select>
+
+    <select id="findAll" resultType="Label">
+        select id, labelname, state, count, fans, recommend from tb_label
+    </select>
+
+    <insert id="add">
+        insert into tb_label(id, labelname, state, count, fans, recommend) values (#{id}, #{labelname}, #{state}, #{count}, #{fans}, #{recommend})
+    </insert>
+
+</mapper>
